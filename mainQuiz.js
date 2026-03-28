@@ -82,19 +82,26 @@ function loadQuestion(ID) {
     
     // Step 1
     let questionText = document.getElementById('question-text');
+    let questionImg = document.getElementById('question-image');
+    let choices = document.getElementById('choices');
     
     // Step 2
     questionText.innerHTML = questions[ID].text;
+    questionImg.src = questions[ID].image;
     
     // Step 6
-    
+    choices.innerHTML = "";
     for (const [choice, personality] of Object.entries(questions[ID].choices)) {
         // Step 3
-        
+        let button = document.createElement("button");
+        button.innerHTML = choice;
+        button.className = "choice-button";
         // Step 4
-        
+        choices.appendChild(button);
         // Step 5
-        
+        button.addEventListener("click", function(){
+            changeQuestion(currentQuestion + 1, personality);
+        });
     }
 }
 
